@@ -1,1 +1,3 @@
-# SamLindaman Weather-Prediction-Application README.MD
+# Weather-Prediction-Application
+
+:)
