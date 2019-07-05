@@ -4,3 +4,4 @@ to model and plot the graph by use of matplotlib.
 Data transfer and processing is through python by whish we parse it to json and can be transferred to flask
 where we host and create our backend of the website.
 We have incorporated microservices as well
+
