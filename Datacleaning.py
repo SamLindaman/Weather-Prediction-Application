@@ -27,3 +27,4 @@ data =data[(data['date']>= datetime(1997,1,1)) & (data['date']<=datetime(2019,6,
 #data.query("date.dt.day ==30 & date.dt.month == 12", inplace = True) //if one wants to query specific dates
 
 data.to_csv('cleanedData.csv',index = None)
+
