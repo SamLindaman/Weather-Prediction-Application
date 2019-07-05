@@ -33,3 +33,33 @@ index_col: A key idea behind using Pandas for TS data is that the index has to b
 date_parser: This specifies a function which converts an input string into datetime variable. 
   Be default Pandas reads data in format ‘YYYY-MM-DD HH:MM:SS’. If the data is not in this format, 
   the format has to be manually defined. Something similar to the dataparse function defined here can be used for this purpose.
+
+
+How to specify a range of dates to use:
+#1. Specify the entire range:
+ts['1949-01-01':'1949-05-01']
+or
+#2. Use ':' if one of the indices is at ends:
+ts[:'1949-05-01']
+ts = variable to hold the timestamp column of the .csv file
+
+Plotting Rolling Statistics: We can plot the moving average or moving variance and see if it varies with time.
+  By moving average/variance I mean that at any instant ‘t’, we’ll take the average/variance of the last year, i.e.
+   last 12 months. But again this is more of a visual technique.
+
+Dickey-Fuller Test: This is one of the statistical tests for checking stationarity. Here the null hypothesis is 
+  that the TS is non-stationary. The test results comprise of a Test Statistic and some Critical Values for difference 
+  confidence levels. If the ‘Test Statistic’ is less than the ‘Critical Value’, we can reject the null hypothesis and 
+  say that the series is stationary
+  
+  
+ Making Time Series Stationary:
+  There are 2 major reasons behind non-stationaruty of a TS:
+1. Trend – varying mean over time. For eg, in this case we saw that on average, the number of passengers was growing over
+           time.
+2. Seasonality – variations at specific time-frames. eg people might have a tendency to buy cars in a particular month 
+                because of pay increment or festivals.
+
+The underlying principle is to model or estimate the trend and seasonality in the series and remove those from the series 
+to get a stationary series. Then statistical forecasting techniques can be implemented on this series. The final step 
+would be to convert the forecasted values into the original scale by applying trend and seasonality constraints back.
