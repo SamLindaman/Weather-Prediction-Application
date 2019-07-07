@@ -1,7 +1,7 @@
 
 '''
 data: 2019.07.05
-name: Lee Eunsoo
+name: Lee Eunsoo, Kim Taesik
 '''
 
 from flask import Flask
