@@ -4,7 +4,7 @@ import socket, os, threading
 # called by Weather_model.py to transfer data
 class SendFile():
     #Initialize class
-    def __init__(self,serverAdd="127.0.0.1",serverPort=9000,fileName=""):
+    def __init__(self,serverAdd="127.0.0.1",serverPort=5000,fileName=""):
         self.address=(serverAdd,serverPort)
         self.filename=fileName
 
@@ -38,19 +38,19 @@ class SendFileThread(threading.Thread):
         self.sock = sock
         self.file=file
 
-        # send data
-        def run(self):
-            print("file name is == "+self.filename)
-            BUFFERSIZE=1024
-            count = 0
+     # send data
+    def run(self):
+        print("file name is == "+self.file.name)
+        BUFFERSIZE = 1024
+        count = 0
 
-            while True:
-                file_data = self.file.read(BUFFERSIZE)
-                if not file_data:
-                    print("no data found")
-                    break
-                self.sock.send(file_data)
+        while True:
+            file_data = self.file.read(BUFFERSIZE)
+            if not file_data:
+                print("no more data found")
+                break
+            self.sock.send(file_data)
+            print("sent file")
 
-        print("sent file")
         self.file.close()
         self.sock.close()
