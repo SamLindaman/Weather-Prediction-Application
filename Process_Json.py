@@ -1,6 +1,7 @@
 import time.json
 import json
 
+
 def transfer_date(old_value, new_month, new_day):
     iso_format = "%Y-%m-%dT%H:%M:%S.%fZ"
     normal_format = "%Y-%m-%d"
@@ -11,6 +12,7 @@ def transfer_date(old_value, new_month, new_day):
     temp_day = temp_month.replace('-31', new_day)
 
     return temp_day
+
 
 def format_json(json_file, t_month, t_day):
     j = json.load(open(json_file))
