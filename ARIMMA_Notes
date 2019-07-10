@@ -1,0 +1,65 @@
+ARIMA is an acronym that stands for AutoRegressive Integrated Moving Average.
+It is a generalization of the simpler AutoRegressive Moving Average and adds the notion of integration.
+
+This acronym is descriptive, capturing the key aspects of the model itself. Briefly, they are:
+
+AR: Autoregression. A model that uses the dependent relationship between an observation and some number of lagged observations.
+
+I: Integrated. The use of differencing of raw observations 
+  (e.g. subtracting an observation from an observation at the previous time step) in order to make the time series stationary.
+
+MA: Moving Average. 
+  A model that uses the dependency between an observation and a residual error from a moving average model applied to lagged
+  observations. Each of these components are explicitly specified in the model as a parameter.
+  A standard notation is used of ARIMA(p,d,q) where the parameters are substituted with integer values to quickly indicate
+  the specific ARIMA model being used.
+
+The parameters of the ARIMA model are defined as follows:
+
+p: The number of lag observations included in the model, also called the lag order.
+d: The number of times that the raw observations are differenced, also called the degree of differencing.
+q: The size of the moving average window, also called the order of moving average.
+  A linear regression model is constructed including the specified number and type of terms, and the data is prepared
+  by a degree of differencing in order to make it stationary, i.e. to remove trend and seasonal structures that negatively
+  affect the regression model.
+
+A value of 0 can be used for a parameter, which indicates to not use that element of the model.
+This way, the ARIMA model can be configured to perform the function of an ARMA model, and even a simple AR, I, or MA model.
+
+Panda Commands to use:
+
+parse_dates: This specifies the column which contains the date-time information. As we say above, the column name is ‘Month’.
+index_col: A key idea behind using Pandas for TS data is that the index has to be the variable depicting date-time information. So this argument tells pandas to use the ‘Month’ column as index.
+date_parser: This specifies a function which converts an input string into datetime variable. 
+  Be default Pandas reads data in format ‘YYYY-MM-DD HH:MM:SS’. If the data is not in this format, 
+  the format has to be manually defined. Something similar to the dataparse function defined here can be used for this purpose.
+
+
+How to specify a range of dates to use:
+#1. Specify the entire range:
+ts['1949-01-01':'1949-05-01']
+or
+#2. Use ':' if one of the indices is at ends:
+ts[:'1949-05-01']
+ts = variable to hold the timestamp column of the .csv file
+
+Plotting Rolling Statistics: We can plot the moving average or moving variance and see if it varies with time.
+  By moving average/variance I mean that at any instant ‘t’, we’ll take the average/variance of the last year, i.e.
+   last 12 months. But again this is more of a visual technique.
+
+Dickey-Fuller Test: This is one of the statistical tests for checking stationarity. Here the null hypothesis is 
+  that the TS is non-stationary. The test results comprise of a Test Statistic and some Critical Values for difference 
+  confidence levels. If the ‘Test Statistic’ is less than the ‘Critical Value’, we can reject the null hypothesis and 
+  say that the series is stationary
+  
+  
+ Making Time Series Stationary:
+  There are 2 major reasons behind non-stationaruty of a TS:
+1. Trend – varying mean over time. For eg, in this case we saw that on average, the number of passengers was growing over
+           time.
+2. Seasonality – variations at specific time-frames. eg people might have a tendency to buy cars in a particular month 
+                because of pay increment or festivals.
+
+The underlying principle is to model or estimate the trend and seasonality in the series and remove those from the series 
+to get a stationary series. Then statistical forecasting techniques can be implemented on this series. The final step 
+would be to convert the forecasted values into the original scale by applying trend and seasonality constraints back.
