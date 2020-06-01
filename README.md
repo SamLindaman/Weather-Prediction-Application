@@ -1,3 +1,2 @@
 # Weather-Prediction-Application
 
-:)
